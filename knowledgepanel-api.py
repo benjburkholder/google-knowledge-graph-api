@@ -5,10 +5,11 @@ import requests
 
 api_key = open('api-key.txt').read()
 query = input('Enter query: ')
+querynum = input('How many results do you want? (Number): ')
 service_url = 'https://kgsearch.googleapis.com/v1/entities:search'
 params = {
     'query': str(query),
-    'limit': 10,
+    'limit': int(querynum),
     'indent': True,
     'key': api_key,
 }
@@ -23,7 +24,7 @@ if savefiles == 'Y':
   file = open('knowledge-graph-results.txt', 'a')
   file.write(f'Query: {query}' + '\n')
   for element in response['itemListElement']:
-    print(element['result']['name'] + ' (' + str(element['resultScore']) + ')')
+    (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
     file.write(element['result']['name'] +
              ' (' + str(element['resultScore']) + ')' + '\n')
   file.close()
