@@ -1,4 +1,4 @@
-"""Example of Python client calling Knowledge Graph Search API."""
+"""Python client calling Knowledge Graph Search API."""
 import json
 import urllib.parse
 import requests
@@ -28,4 +28,6 @@ if savefiles == 'Y':
     file.write(element['result']['name'] +
              ' (' + str(element['resultScore']) + ')' + '\n')
   file.close()
+  
+input()
 
