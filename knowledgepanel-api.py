@@ -3,6 +3,7 @@ import json
 import urllib.parse
 import requests
 
+print('Knowledge Graph API')
 api_key = open('api-key.txt').read()
 query = input('Enter query: ')
 querynum = input('How many results do you want? (Number): ')
@@ -34,8 +35,8 @@ except KeyError:
 print('')
 savefiles = input('Save files locally?(Y/N) ')
 if savefiles == 'Y':
-  savefile = 'knowledge-graph-results.txt'
-  file = open('knowledge-graph-results.txt', 'a')
+  savefile = 'knowledge-graph-results.csv'
+  file = open('knowledge-graph-results.csv', 'a')
   file.write(f'Query: {query}' + '\n')
   try:
       for element in response['itemListElement']:
