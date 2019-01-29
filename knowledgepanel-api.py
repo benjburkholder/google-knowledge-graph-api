@@ -21,13 +21,15 @@ params = {
 if typequestion == 'Y':
     params['types'] = kptype
 
-print(params)
-
 url = f'{service_url}?{urllib.parse.urlencode(params)}'
 response = json.loads(urllib.request.urlopen(url).read())
 print(f'Query: {query}' + '\n')
-for element in response['itemListElement']:
-  print(element['result']['name'] + ' (' + str(element['resultScore']) + ')')
+
+try:
+    for element in response['itemListElement']:
+        print(element['result']['name'] + ' (' + str(element['resultScore']) + ')')
+except KeyError:
+    print('<Error: Name not found>')
 
 print('')
 savefiles = input('Save files locally?(Y/N) ')
@@ -35,11 +37,13 @@ if savefiles == 'Y':
   savefile = 'knowledge-graph-results.txt'
   file = open('knowledge-graph-results.txt', 'a')
   file.write(f'Query: {query}' + '\n')
-  for element in response['itemListElement']:
-    (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
-    file.write(element['result']['name'] +
-               ' (' + str(element['resultScore']) + ')' + '\n')
-  print(f'Success. Results saved locally at {savefile}.')
+  try:
+    for element in response['itemListElement']:
+        (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
+        file.write(element['result']['name'] + ' (' + str(element['resultScore']) + ')' + '\n')
+  except KeyError:
+        print(f'Success. Results saved locally at {savefile}.')
   file.close()
 
 input()
+
