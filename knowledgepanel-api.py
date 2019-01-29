@@ -38,11 +38,13 @@ if savefiles == 'Y':
   file = open('knowledge-graph-results.txt', 'a')
   file.write(f'Query: {query}' + '\n')
   try:
-    for element in response['itemListElement']:
+      for element in response['itemListElement']:
         (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
         file.write(element['result']['name'] + ' (' + str(element['resultScore']) + ')' + '\n')
   except KeyError:
-        print(f'Success. Results saved locally at {savefile}.')
+      print('')
+
+  print(f'Success. Results saved locally at {savefile}.')
   file.close()
 
 input()
