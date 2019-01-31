@@ -38,21 +38,22 @@ while True:
     savefiles = input('Save files locally?(Y/N) ')
     if savefiles == 'Y':
         savefile = 'knowledge-graph-results.csv'
-    file = open('knowledge-graph-results.csv', 'a')
-    file.write(f'Query: {query}' + '\n')
-    try:
-        for element in response['itemListElement']:
-            (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
-            file.write(element['result']['name'] + ' (' + str(element['resultScore']) + ')' + '\n')
-    except KeyError:
-        print('')
+        file = open('knowledge-graph-results.csv', 'a')
+        file.write(f'Query: {query}' + '\n')
+        try:
+            for element in response['itemListElement']:
+                (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
+                file.write(element['result']['name'] + ' (' + str(element['resultScore']) + ')' + '\n')
+        except KeyError:
+            print('')
     if savefiles == 'Y':
         print(f'Success. Results saved locally at {savefile}.')
-    file.close()
+        file.close()
     choice = input('Continue Querying?(Y/N): ')
     if choice == 'N':
         break
 
 
 input()
+
 
