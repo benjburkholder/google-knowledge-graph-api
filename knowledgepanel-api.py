@@ -10,6 +10,7 @@ while True:
     querynum = input('How many results do you want? (Number): ')
     typequestion = input('Add entity filter? (Y/N): ')
     if typequestion == 'Y':
+        print('Check Schema.org for list of entity "types": https://schema.org/docs/schemas.html')
         kptype = input('What type of entity do you want? ')
 
     service_url = 'https://kgsearch.googleapis.com/v1/entities:search'
