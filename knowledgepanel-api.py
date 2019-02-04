@@ -8,6 +8,7 @@ api_key = open('api-key.txt').read()
 while True:
     query = input('Enter query: ')
     querynum = input('How many results do you want? (Number): ')
+    queryDesc = input('Return Knowledge Graph description? (Y/N): ')
     typequestion = input('Add entity filter? (Y/N): ')
     if typequestion == 'Y':
         print('Check Schema.org for list of entity "types": https://schema.org/docs/schemas.html')
@@ -30,7 +31,10 @@ while True:
 
     try:
         for element in response['itemListElement']:
-            print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
+            if queryDesc == 'Y':
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
+            else:
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')')
     except KeyError:
         print('<Error: Name not found>')
 
@@ -42,8 +46,10 @@ while True:
         file.write(f'Query: {query}' + '\n')
         try:
             for element in response['itemListElement']:
-                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
-                file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'] + '\n')
+                if queryDesc == 'Y':
+                    file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'] + '\n')
+                else: 
+                    file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + '\n')
         except KeyError:
             print('')
     if savefiles == 'Y':
