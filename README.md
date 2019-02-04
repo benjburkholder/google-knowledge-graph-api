@@ -2,8 +2,6 @@
 
 Chief Metrics Returned:
 1. Result name
-2. Result ID
-3. Result Score
-
-Optional:
-4. Result Description
+2. Result id
+3. Result score
+4. Result description (optional)
