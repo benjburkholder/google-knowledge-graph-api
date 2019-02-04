@@ -32,9 +32,9 @@ while True:
     try:
         for element in response['itemListElement']:
             if queryDesc == 'Y':
-                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (Score: ' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
             else:
-                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')')
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (Score: ' + str(element['resultScore']) + ')')
     except KeyError:
         print('<Error: Name not found>')
 
@@ -47,9 +47,9 @@ while True:
         try:
             for element in response['itemListElement']:
                 if queryDesc == 'Y':
-                    file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'] + '\n')
+                    file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (Score: ' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'] + '\n')
                 else: 
-                    file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + '\n')
+                    file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (Score: ' + str(element['resultScore']) + ')' + '\n')
         except KeyError:
             print('')
     if savefiles == 'Y':
