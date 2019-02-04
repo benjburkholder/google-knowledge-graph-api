@@ -30,7 +30,7 @@ while True:
 
     try:
         for element in response['itemListElement']:
-            print(element['result']['name'] + ' (' + str(element['resultScore']) + ')')
+            print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')')
     except KeyError:
         print('<Error: Name not found>')
 
@@ -55,5 +55,4 @@ while True:
 
 
 input()
-
 
