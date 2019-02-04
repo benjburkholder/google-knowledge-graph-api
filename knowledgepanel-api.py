@@ -59,6 +59,5 @@ while True:
     if choice == 'N':
         break
 
-
 input()
 
