@@ -30,7 +30,7 @@ while True:
 
     try:
         for element in response['itemListElement']:
-            print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')')
+            print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
     except KeyError:
         print('<Error: Name not found>')
 
@@ -42,8 +42,8 @@ while True:
         file.write(f'Query: {query}' + '\n')
         try:
             for element in response['itemListElement']:
-                (element['result']['name'] + ' (' + str(element['resultScore']) + ')')
-                file.write(element['result']['name'] + ' (' + str(element['resultScore']) + ')' + '\n')
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
+                file.write(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'] + '\n')
         except KeyError:
             print('')
     if savefiles == 'Y':
