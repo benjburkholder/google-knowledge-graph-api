@@ -32,9 +32,12 @@ while True:
     try:
         for element in response['itemListElement']:
             if queryDesc == 'Y':
-                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (Score: ' + str(element['resultScore']) + ')' + ' Description: ' + element['result']['detailedDescription']['articleBody'])
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' \
+                (Score: ' + str(element['resultScore']) + ')' + ' \
+                Description: ' + element['result']['detailedDescription']['articleBody'])
             else:
-                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' (Score: ' + str(element['resultScore']) + ')')
+                print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' \
+                (Score: ' + str(element['resultScore']) + ')')
     except KeyError:
         print('<Error: Name not found>')
 
