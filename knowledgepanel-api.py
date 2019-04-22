@@ -27,14 +27,14 @@ while True:
 
     url = f'{service_url}?{urllib.parse.urlencode(params)}'
     response = json.loads(urllib.request.urlopen(url).read())
+
     print(f'Query: {query}' + '\n')
 
     try:
         for element in response['itemListElement']:
             if queryDesc == 'Y':
                 print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' \
-                (Score: ' + str(element['resultScore']) + ')' + ' \
-                Description: ' + element['result']['detailedDescription']['articleBody'])
+                (Score: ' + str(element['resultScore']) + ')' + 'Description: ' + element['result']['description'])
             else:
                 print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' \
                 (Score: ' + str(element['resultScore']) + ')')
@@ -56,7 +56,7 @@ while True:
                     name = element['result']['name']
                     ID = element['result']['@id']
                     score = element['resultScore']
-                    description = element['result']['detailedDescription']['articleBody']
+                    description = element['result']['description']
                     descrip2 = f'"{description}"'
 
                     row = f'{q},{name},{ID},{score},{descrip2}\n'
@@ -66,7 +66,7 @@ while True:
                     name = element['result']['name']
                     ID = element['result']['@id']
                     score = element['resultScore']
-                    description = element['result']['detailedDescription']['articleBody']
+                    description = element['result']['description']
                     row2 = f'{q},{name},{ID},{score}\n'
                     file.write(row2)
         except KeyError:
