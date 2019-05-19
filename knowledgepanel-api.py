@@ -26,12 +26,15 @@ while True:
         params['types'] = kptype
 
     url = f'{service_url}?{urllib.parse.urlencode(params)}'
-    response = json.loads(urllib.request.urlopen(url).read())
+    print(url)
+    # response = json.loads(urllib.request.urlopen(url).read())
+    response = requests.get(url, verify=False)
+    json_response = json.loads(response.text)
 
     print(f'Query: {query}' + '\n')
 
     try:
-        for element in response['itemListElement']:
+        for element in json_response['itemListElement']:
             if queryDesc == 'Y':
                 print(element['result']['name'] + ' (ID: ' + element['result']['@id'] + ')' + ' \
                 (Score: ' + str(element['resultScore']) + ')' + 'Description: ' + element['result']['description'])
@@ -50,7 +53,7 @@ while True:
         file.write(columnTitleRow)
             
         try:
-            for element in response['itemListElement']:
+            for element in json_response['itemListElement']:
                 if queryDesc == 'Y':
                     q = query
                     name = element['result']['name']
