@@ -27,7 +27,6 @@ while True:
 
     url = f'{service_url}?{urllib.parse.urlencode(params)}'
     print(url)
-    # response = json.loads(urllib.request.urlopen(url).read())
     response = requests.get(url, verify=False)
     json_response = json.loads(response.text)
 
